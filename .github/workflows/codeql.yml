@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   analyze:
@@ -24,8 +26,11 @@ jobs:
         with:
           languages: cpp
 
+      - name: Set up MSBuild path
+        uses: microsoft/setup-msbuild@v2
+
       - name: Build solution
-        run:  msbuild Project1/Project1.sln /t:Rebuild /p:Configuration=Debug
+        run: msbuild Project1/Project1.sln /t:Rebuild /p:Configuration=Debug
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
