@@ -25,8 +25,7 @@ jobs:
           languages: cpp
 
       - name: Build solution
-        run: |
-          msbuild Project1/Project1.sln /t:Rebuild /p:Configuration=Release
+        run:  msbuild Project1/Project1.sln /t:Rebuild /p:Configuration=Debug
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
